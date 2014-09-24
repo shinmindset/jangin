@@ -96,16 +96,18 @@
 		<td rowspan="2"><input type="text" name="weather"> </td>
 		<th>작성자 </th>
 		<td><input type ="text" name="auth"></td>
+		<td></td>
 	</tr>
 	<tr >
 		<th>날짜 </th>
 		<td><input type ="text" name="workDate"></td>
+		<td></td>
 	</tr>
 	</div>
 	<div>
 		<tr>
 			<th>현장</th>
-			<td colspan="4"><input type="text" name="conName"> </td>
+			<td colspan="5"><input type="text" name="conName"> </td>
 		</tr>
 	</div>
 	<div>
@@ -113,11 +115,13 @@
 			<th >작업내용 </th>
 			<th colspan="2">오늘작업내용 </th>
 			<th colspan="2">내일작업계획 </th>
+			 <th></th> 
 		</tr>
 		<tr class="item1">
 			<td><input type="button" value="작업내용 추가" class="addBtn"></td>
 			<td colspan="2"><input type = "text" name="workDone"></td>
 			<td colspan="2"><input type = "text" name="expWorkDone"></td>
+			<td><button class="delBtn">삭제</button></td> 
 		</tr>
 	</div>
 	<div>
@@ -125,11 +129,13 @@
 			<th>작업자명단 </th>
 			<th colspan="2">오늘작업자 </th>
 			<th colspan="2">내일작업자 </th>
+			 <th></th> 
 		</tr>
 		<tr class="items">
 			<td><input type="button" value="작업자 추가"  class="addBtn"></td>
 			<td colspan="2"><input type = "text" name="empName"></td>
 			<td colspan="2"><input type = "text" name="expEmpName"></td>
+			<td><button class="delBtn">삭제</button></td> 
 		</tr>
 	</div>
 	<div>
@@ -137,20 +143,22 @@
 			<th>자재반입 및 구매내역 </th>
 			<th colspan="2">오늘자재반입 / 구매내역 </th>
 			<th colspan="2">내일자재반입 / 구매예정계획 </th>
+			 <th></th> 
 		</tr>
 		<tr class="item3">
 			<td><input type="button" value="자재반입추가" class="addBtn"></td>
 			<td colspan="2"><input type = "text" name="itemName"></td>
 			<td colspan="2"><input type = "text" name="expItemName"></td>
+			<td><button class="delBtn">삭제</button></td> 
 		</tr>
 	</div>
 	<div>
 		<tr>
 			<th rowspan="2">현장특기사항 </th>
-			<th colspan="4">현장에서 요청사항이나  사무실 전달사항 </th>
+			<th colspan="5">현장에서 요청사항이나  사무실 전달사항 </th>
 		</tr>
 		<tr>
-			<td colspan="4"><input type="text" name="etc"></td>
+			<td colspan="5"><input type="text" name="etc" size="80"></td>
 		</tr>
 	</div>
 	<div>

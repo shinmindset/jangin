@@ -66,11 +66,24 @@
 	WorkItemVO workItemVO = new WorkItemVO();
 	itemIt = workDao.getWorkItemList(conn, workVO).iterator();
 	ItemDao itemDao = new ItemDao();
-%> 
+%>
+<script type="text/javascript">
+
+function create_excel() { /* 엑셀로 저장하기 */
+	window.location.href = "../excel/dailyWorkExcel.jsp";
+}
+
+</script>
 <title>일일 작업 일보 조회 </title>
 </head>
 <body>
-<form action="dailyWorkList.jsp" name="DailyWorkInfo" method="post">
+<form action="../excel/dailyWorkExcel.jsp" name="DailyWorkInfo" method="post">
+<input type="hidden" name="workDate" value=<%=workDate %> />
+<input type="hidden" name="construction" value=<%=construction %> />
+<input type="hidden" name="weather" value=<%=workVO.getWeather()  %> />
+<input type="hidden" name="author" value=<%=workVO.getAuth() %> />
+<input type="hidden" name="etc" value=<%=workVO.getETC() %> />
+
 <table border="1" id="example">
 	<div>
 	<tr >
@@ -106,17 +119,17 @@
 	 	String expWorkDone = workDoneVO.getExpWorkDone();
 	 	
 	 	if(workDone == null){
-	 		workDone ="없음";
+	 		workDone ="";
 	 	}
 	 	if(expWorkDone == null){
-	 		expWorkDone ="없음";
+	 		expWorkDone ="";
 	 	}
 	 	
 %>
 	<tr class = "item1">
 		<td></td>
-		<td colspan="2"><%=workDone%></td>
-		<td colspan="2"><%=expWorkDone %></td>
+		<td colspan="2"><input type="text" name="workDone" id="number" value="<%=workDone%>" readonly></td>
+		<td colspan="2"><input type="text" name="expWorkDone" id="number" value="<%=expWorkDone %>" readonly></td>
 	</tr>
 <%
 		}
@@ -130,7 +143,6 @@
 			<th colspan="2">내일작업자 </th>
 		</tr>
 <%
-//수정 필요함. 같은 열이 반복적으로 돔. 
 	while(empIt.hasNext()){
 		workEmpVO = (WorkEmpVO)empIt.next();
 		if(workEmpVO.getNo()!=0){
@@ -144,7 +156,7 @@
 				empName= empDao.get(conn, empVO).getEmpName();
 				System.out.println(empName);
 			}else{
-				empName = "없음";
+				empName = "";
 			}
 			
 			empVO.setEmpCode(workEmpVO.getExpEmpCode());
@@ -153,13 +165,13 @@
 			if(workEmpVO.getExpEmpCode() != 0){
 				expEmpName= empDao.get(conn, empVO).getEmpName();
 			}else{
-				expEmpName = "없음";
+				expEmpName = "";
 			}
 %>
 	<tr class = "item2">
 		<td></td>
-		<td colspan="2"><%=empName %></td>
-		<td colspan="2"><%=expEmpName %></td>
+		<td colspan="2"><input type="text" name="empName" id="number" value="<%=empName %>" readonly></td>
+		<td colspan="2"><input type="text" name="expEmpName" id="number" value="<%=expEmpName %>" readonly></td>
 	</tr>
 <%
 		}
@@ -171,7 +183,8 @@
 			<th>자재반입 및 구매내역 </th>
 			<th colspan="2">오늘자재반입 / 구매내역 </th>
 			<th colspan="2">내일자재반입 / 구매예정계획 </th>
-		</tr><%
+		</tr>
+<%
 	while(itemIt.hasNext()){
 		workItemVO = (WorkItemVO)itemIt.next();
 		/*
@@ -191,7 +204,7 @@
 				itemName= itemDao.get(conn, itemVO).getItemName();
 				System.out.println(itemName);
 			}else{
-				itemName = "없음";
+				itemName = "";
 			}
 			
 			itemVO.setItemCode(workItemVO.getExpItemCode());
@@ -199,14 +212,14 @@
 			if(workItemVO.getExpItemCode() != 0){
 				expItemName= itemDao.get(conn, itemVO).getItemName();
 			}else{
-				expItemName = "없음";
+				expItemName = "";
 			}
 
 %>
 	<tr class = "item1">
 		<td></td>
-		<td colspan="2"><%=itemName %></td>
-		<td colspan="2"><%=expItemName %></td>
+		<td colspan="2"><input type="text" name="itemName" id="number" value="<%=itemName %>" readonly></td>
+		<td colspan="2"><input type="text" name="expItemName" id="number" value="<%=expItemName %>" readonly></td>
 	</tr>
 <%
 		}
@@ -230,10 +243,7 @@
 	</div>
 	<div>
 			<tr>
-				<td><input type="submit" value="조회하기" />
-				<td><input type="button" value="초기화" onclick="javascript:fn_cancel();" ></td>
-			</tr>
-			<tr>
+				<td><input type="submit" value="엑셀출력"/>
 				<td><a href="dailyWorkSch.jsp">[전 화면으로]</a></td>
 			</tr>
 	</div>

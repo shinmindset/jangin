@@ -112,12 +112,8 @@
 	<tr>
 		<td>사원번호</td>
 		<td>이름</td>
-		<td>생년월일</td>
 		<td>직책</td>
 		<td>연락처</td>
-		<td>현장명</td>
-		<td>현장코드</td>
-		<td>날짜</td>
 	</tr>
 <%
 	while(it.hasNext()){
@@ -127,12 +123,8 @@
 	<tr>
 		<td><%=vo.getEmpCode() %></td>
 		<td><%=vo.getEmpName() %></td>
-		<td></td>
 		<td><%= vo.getEmpPosition() %></td>
 		<td><%= vo.getEmpTel() %></td>
-		<td></td>
-		<td></td>
-		<td></td>
 	</tr>
 <%	
 		}
